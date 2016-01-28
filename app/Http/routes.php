@@ -29,3 +29,11 @@ Route::get('/', function () {
 Route::group(['middleware' => ['web']], function () {
     //
 });
+
+// Doctor
+Route::group( ['middleware' => ['web']], function () {
+    Route::get('doctor', "DoctorController@home");
+    Route::get('doctor/login', "DoctorController@login");
+    Route::post('doctor/login', "DoctorController@logindoc");
+    Route::get('doctor/logout', "DoctorController@logout");
+});
