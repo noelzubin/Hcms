@@ -15,7 +15,7 @@ use App\Http\Requests;
  *      1. Doctor
  *      2. Receptionists
  *      3. Patients
- *
+ *      4. Pharmacies
  */
 class myAuth{
 
@@ -30,7 +30,7 @@ class myAuth{
 
 
     public static function login($sessid,$id){
-        session(["loggedin" => $sessid , "loggedUserId" => $id ]);
+        session(["loggedin" => $sessid , "loggedUserId" => $id]);
     }
 
     public static function logout(){

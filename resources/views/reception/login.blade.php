@@ -1,14 +1,14 @@
 
-    @extends('doctor.master')
+    @extends('reception.master')
 
-    @section('title', 'doctor login')
+    @section('title', 'desk login')
 
 
     @section('content')
 
         <form action="login" method="POST">
-            <label for="usrname">Username:</label>
-            <input type="text" name="name">
+            <label for="id">id:</label>
+            <input type="text" name="id">
             <label for="password">password:</label>
             <input type="password" name="password">
             <input type="submit" value="submit">
@@ -18,6 +18,5 @@
                 @endforeach
             @endif
         </form>
-        <br> <a href="signup">Signup</a>
 
     @endsection

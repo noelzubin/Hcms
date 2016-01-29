@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\doctor;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\myfiles\myAuth;
@@ -63,5 +64,28 @@ class DoctorController extends Controller
         }
     }
 
+
+    /**
+     * signup page of doctor
+     */
+    public function signup(){
+        if(MyAuth::check(1))
+            return redirect("doctor/");
+        else
+            $hosp = DB::connection('centraldb')->select('select * from `Hospitals`');
+            return view("doctor.signup",compact("hosp"));
+    }
+
+
+    public function signupdoc(Request $request){
+        $this->validate($request, ["name"=>"required|min:2","password"=>"required|min:5","hospital"=>"required"]);
+        $input = $_POST;
+        $doc = new doctor;
+        $doc->name = $input["name"];
+        $doc->password = Hash::make($input["password"]);
+        $doc->hospital = $input["hospital"];
+        $doc->save();
+        return redirect("doctor/");
+    }
 
 }
