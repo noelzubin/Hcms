@@ -15,6 +15,7 @@ class CreateReceptionsTable extends Migration
         Schema::create('receptions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('password');
+            $table->integer("hospital");
             $table->timestamps();
         });
     }

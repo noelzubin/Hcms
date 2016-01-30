@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +24,19 @@ Route::get('/', function () {
 |
 */
 
+
+/*
+| In the first route here the ip adress of source is checked to find
+| out the hospital from whhich the clients log in .
+*/
 Route::group(['middleware' => ['web']], function () {
-    //
+    Route::get('/', function () {
+        if($_SERVER["SERVER_ADDR"] == "192.168.0.4" || $_SERVER["SERVER_ADDR"] == "::1")
+            session(["hospid"=>2]);
+        return view('welcome');
+    });
 });
+
 
 // Doctor
 Route::group( ['middleware' => ['web']], function () {
@@ -41,7 +49,8 @@ Route::group( ['middleware' => ['web']], function () {
 });
 
 // Receptions
-Route::group( ['middleware' => ['web']], function () {
+Route::group(
+    ['middleware' => ['web']], function () {
     Route::get('desk', "ReceptionController@home");
     Route::get('desk/login', "ReceptionController@login");
     Route::post('desk/login', "ReceptionController@logindesk");

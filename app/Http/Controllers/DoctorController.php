@@ -50,7 +50,7 @@ class DoctorController extends Controller
      */
     public function logindoc(Requests\doctorLogin $request){
         $input = $_POST;
-        $doc = DB::connection('centraldb')->select('select * from Doctors where name = ?', [$input["name"]]);
+        $doc = DB::connection('centraldb')->select('select * from Doctors where name = ? and hospital = ?', [$input["name"] , session("hospid") ]);
         if($doc == null)
             return view("doctor.login");
         else{
@@ -85,6 +85,8 @@ class DoctorController extends Controller
         $doc->password = Hash::make($input["password"]);
         $doc->hospital = $input["hospital"];
         $doc->save();
+        $doc = DB::connection('centraldb')->select('select * from Doctors where name = ?', [$doc->name])[0];
+        DB::connection('mysql')->insert('insert into ldoctors (id, name) values (?, ?)', [$doc->id, $doc->name]);
         return redirect("doctor/");
     }
 

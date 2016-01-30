@@ -34,7 +34,9 @@ class myAuth{
     }
 
     public static function logout(){
+        $temphospid = session("hospid");
         session()->flush();
+        session([ "hospid" => $temphospid ]);
     }
 }
 

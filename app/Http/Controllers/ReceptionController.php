@@ -31,7 +31,7 @@ class ReceptionController extends Controller
     public function logindesk(Request $request){
         $this->validate($request, ["id"=>"required|integer","password"=>"required|min:5"]);
         $input = $_POST;
-        $desk = DB::select('select * from receptions where id = ?', [$input["id"]]);
+        $desk = DB::select('select * from receptions where id = ? and hospital = ?', [$input["id"], session("hospid")]);
         if($desk == null)
             return view("reception.login");
         else{
