@@ -5,10 +5,56 @@
  * email: atandrastoth@gmail.com
  * Licensed under the MIT license
  */
+
+//post method
+function post(path, params, method) {
+    method = method || "post"; // Set method to post by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+        }
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
+//my xmlparse
+function XMLparse(code){
+    parser = new DOMParser();
+    xmlDoc = parser.parseFromString(code,"text/xml");
+    uid =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("uid");
+    name =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("name");
+    gender =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("gender");
+    yob =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("yob");
+    gname =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("gname");
+    house =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("house");
+    street =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("street");
+    lm =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("lm");
+    dist =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("dist");
+    state =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("state");
+    pc =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("pc");
+
+
+    post('/desk/patVisit',{ "name":name , uid:"uid" , "gender":gender , "yob":yob , "gname":gname , "house":house , "street":street , "lm":lm , "dist":dist , "state":state , "pc":pc } );
+}
+
 (function(undefined) {
     var scannerLaser = $(".scanner-laser"),
-    	  imageUrl = $("#image-url"),
-    	  decodeLocal = $("#decode-img"),
+    	imageUrl = $("#image-url"),
+    	decodeLocal = $("#decode-img"),
         play = $("#play"),
         scannedImg = $("#scanned-img"),
         scannedQR = $("#scanned-QR"),
@@ -40,7 +86,10 @@
                 });
             });
             scannedImg.attr('src', res.imgData);
-            scannedQR.text(res.format + ': ' + res.code);
+            //scannedQR.text(res.format + ': ' + res.code);
+            //post('desk/patVisit', {name: 'Johnny Bravo'});
+            XMLparse(res.code);
+
         },
         getDevicesError: function(error) {
             var p, message = "Error detected with the following parameters:\n";

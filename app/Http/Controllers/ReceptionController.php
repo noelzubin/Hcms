@@ -50,5 +50,9 @@ class ReceptionController extends Controller
         return redirect("desk/login");
     }
 
+    public function patVisit(){
+        return $_POST;
+    }
+
 
 }

@@ -23,7 +23,7 @@ class CreatePatienttable extends Migration
             $table->string('house');
             $table->string('street');
             $table->string('lm');
-            $table->string('district');
+            $table->string('dist');
             $table->string('state');
             $table->string('pc');
             $table->timestamps();

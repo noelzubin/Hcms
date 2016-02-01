@@ -9,6 +9,6 @@ class patient extends Model
     //
     protected $connection = 'centraldb';
     protected $table = 'patients';
-    protected $fillable = ["uid","name","password","age","gender","gname","house","street","district","yob","lm","pc"];
+    protected $fillable = ["uid","password","hospital","name","gender","gname","house","street","dist","yob","lm","pc"];
 
 }

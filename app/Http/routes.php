@@ -49,6 +49,7 @@ Route::group( ['middleware' => ['web']], function () {
     Route::post('doctor/signup', "DoctorController@signupdoc");
 });
 
+
 // Receptions
 Route::group(
     ['middleware' => ['web']], function () {
@@ -56,4 +57,5 @@ Route::group(
     Route::get('desk/login', "ReceptionController@login");
     Route::post('desk/login', "ReceptionController@logindesk");
     Route::get('desk/logout', "ReceptionController@logout");
+    Route::post('desk/patVisit', "ReceptionController@patVisit");
 });
