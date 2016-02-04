@@ -38,6 +38,8 @@ class myAuth{
         session()->flush();
         session([ "hospid" => $temphospid ]);
     }
+
+
 }
 
 ?>

@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\DB;
 use App\myfiles\myAuth;
+use App\myfiles\General;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class ReceptionController extends Controller
 {
@@ -51,7 +53,14 @@ class ReceptionController extends Controller
     }
 
     public function patVisit(){
-        return $_POST;
+        $input = $_POST;
+        $input["age"] = date("Y") -  $input["yob"];
+        return view("reception.patVisit", compact("input"));
+    }
+
+    public function getDocs(){
+//        return $_POST["spec"];
+        return General::getdocs($_POST["spec"]);
     }
 
 

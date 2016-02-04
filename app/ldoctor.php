@@ -9,5 +9,5 @@ class ldoctor extends doctor
     //
     protected $connection = 'mysql';
     protected $table = 'ldoctors';
-    protected $fillable = ["queue"];
+    protected $fillable = ["queue","name"];
 }

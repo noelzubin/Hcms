@@ -16,6 +16,7 @@ class CreateLdoctorsTable extends Migration
             $table->string('name');
             $table->integer('id');
             $table->string('queue');
+            $table->string("speciality");
             $table->timestamps();
         });
     }

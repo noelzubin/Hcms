@@ -58,4 +58,5 @@ Route::group(
     Route::post('desk/login', "ReceptionController@logindesk");
     Route::get('desk/logout', "ReceptionController@logout");
     Route::post('desk/patVisit', "ReceptionController@patVisit");
+    Route::post('desk/getDocs', "ReceptionController@getDocs");
 });
