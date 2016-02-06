@@ -22,9 +22,23 @@ use Illuminate\Support\Facades\DB;
 class General{
 
     public static function getdocs($spec){
-        $doctors = DB::select('select `id`,`queue` from ldoctors where speciality = "GP"');
+        $doctors = DB::select('select `id`,`queue`,`name` from ldoctors where speciality = "' . $spec .'"' );
+        $doctors = self::getqueue($doctors);
         return json_encode($doctors);
-        return $doctors;
+    }
+
+    public static function getqueue($docs){
+        foreach($docs as $doc){
+            $doc->queue = explode("," , $doc->queue);
+        }
+        return $docs;
+    }
+
+    public static function addToQ($doc,$pat){
+        $docQ = DB::select('select `queue` from ldoctors where id = "' . $doc .'"' )[0]->queue;
+        $docQ = $docQ .",".$pat;
+        $docQ = DB::update('update ldoctors set queue = ? where id = ?', [$docQ,$doc]);
+        return;
     }
 }
 

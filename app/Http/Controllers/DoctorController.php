@@ -85,8 +85,11 @@ class DoctorController extends Controller
         $doc->password = Hash::make($input["password"]);
         $doc->hospital = $input["hospital"];
         $doc->save();
-        $doc = DB::connection('centraldb')->select('select * from Doctors where name = ?', [$doc->name])[0];
-        DB::connection('mysql')->insert('insert into ldoctors (id, name) values (?, ?)', [$doc->id, $doc->name]);
+        if(session("hospid") == $doc->hospital)
+        {
+            $doc = DB::connection('centraldb')->select('select * from Doctors where name = ?', [$doc->name])[0];
+            DB::connection('mysql')->insert('insert into ldoctors (id, name) values (?, ?)', [$doc->id, $doc->name]);
+        }
         return redirect("doctor/");
     }
 

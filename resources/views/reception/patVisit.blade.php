@@ -21,7 +21,12 @@
         <option value="SRG">
     </datalist>
 
-    <ul id="Doctors"></ul>
+    <div id="DocError"></div>
+
+    <form action="addPat" method="POST" id="Doctors">
+        <input type="hidden" name="patId" value="{{ $input["uid"] }}">
+        <div id="docts"></div>
+    </form>
 
     <script src="../js/jquery.js"></script>
     <script src="../js/reception/patVisit.js"></script>

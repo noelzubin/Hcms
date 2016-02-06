@@ -55,17 +55,6 @@
                     <input id="flipHorizontal" onchange="Page.changeHorizontal();" type="checkbox">
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="thumbnail" id="result">
-                    <div class="well">
-                        <img width="320" height="240" id="scanned-img" src="">
-                    </div>
-                    <div class="caption">
-                        <h3>Scanned result</h3>
-                        <p id="scanned-QR"></p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </div>

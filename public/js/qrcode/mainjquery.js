@@ -48,7 +48,7 @@ function XMLparse(code){
     pc =  xmlDoc.getElementsByTagName("PrintLetterBarcodeData")[0].getAttribute("pc");
 
 
-    post('/desk/patVisit',{ "name":name , uid:"uid" , "gender":gender , "yob":yob , "gname":gname , "house":house , "street":street , "lm":lm , "dist":dist , "state":state , "pc":pc } );
+    post('/desk/patVisit',{ "name":name , "uid":uid , "gender":gender , "yob":yob , "gname":gname , "house":house , "street":street , "lm":lm , "dist":dist , "state":state , "pc":pc } );
 }
 
 (function(undefined) {

@@ -59,8 +59,14 @@ class ReceptionController extends Controller
     }
 
     public function getDocs(){
-//        return $_POST["spec"];
         return General::getdocs($_POST["spec"]);
+    }
+
+    public function addPat(Request $request){
+        if(isset($_POST["doctor"])){
+            General::addToQ($_POST["doctor"],$_POST["patId"]);
+        }
+        return redirect("desk/");
     }
 
 
