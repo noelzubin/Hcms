@@ -27,13 +27,6 @@
 
 
 
-
-Event::listen('illuminate.query', function($sql)
-{
-    Log::info("error");
-});
-
-
 /*
 | In the first route here the ip adress of source is checked to find
 | out the hospital from whhich the clients log in .
@@ -56,6 +49,8 @@ Route::group( ['middleware' => ['web']], function () {
     Route::get('doctor/logout', "DoctorController@logout");
     Route::get('doctor/signup', "DoctorController@signup");
     Route::post('doctor/signup', "DoctorController@signupdoc");
+    Route::post('doctor/patTreat', "DoctorController@patTreat");
+    Route::post('doctor/patResult', "DoctorController@patResult");
 });
 
 

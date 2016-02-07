@@ -86,7 +86,8 @@ class General{
             $pat->save();
             $sql = "create table `MR". $patient["uid"] ."` (
                 `id` int unsigned not null auto_increment primary key,
-                `docid` int not null, `hospid` int not null,
+                `docid` int not null,
+                 `hospid` int not null,
                 `type` varchar(255) not null,
                 `data` varchar(255) not null,
                 `created_at` timestamp not null,
@@ -101,6 +102,40 @@ class General{
             $pat->name = $patient["name"];
             $pat->save();
         }
+    }
+
+    public static function getDocQ(){
+        $docQ = DB::select('select `queue` from ldoctors where id = "' . session("loggedUserId") .'"' )[0]->queue;
+        $docQ = array_filter(explode(",",$docQ));
+        $arr = array();
+        foreach($docQ as $patid){
+            $name = DB::select('select `name` from lpatients where id = "' . $patid .'"' )[0]->name;
+            $ar = array(
+              "id" => $patid,
+              "name" => $name
+            );
+            array_push($arr, $ar);
+        }
+        return $arr;
+    }
+
+    public static function getPatient($uid){
+        $pat = patient::find($uid);
+        return $pat;
+    }
+
+    public static function getMedRec($uid){
+        $medr = DB::connection("centraldb")->select('select * from MR'.$uid);
+        return $medr;
+    }
+
+    public static function popQ($id){
+        $docQ = DB::select('select `queue` from ldoctors where id = "' . session("loggedUserId") .'"' )[0]->queue;
+        $docQ = array_filter(explode(",",$docQ));
+        $pos = array_search($id, $docQ);
+        unset($docQ[$pos]);
+        DB::update('update ldoctors set queue = ? where id = ?', [ implode(",",$docQ) ,session("loggedUserId")]);
+        return;
     }
 }
 
