@@ -26,6 +26,7 @@ class CreatePatienttable extends Migration
             $table->string('dist');
             $table->string('state');
             $table->string('pc');
+            $table->integer('age');
             $table->timestamps();
         });
     }

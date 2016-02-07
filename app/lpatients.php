@@ -9,4 +9,5 @@ class lpatients extends patient
     protected $connection = 'mysql';
     protected $table = 'lpatients';
     protected $fillable = ["name","uid","docPref"];
+    protected $primaryKey = "id";
 }

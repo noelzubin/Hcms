@@ -55,6 +55,7 @@ class ReceptionController extends Controller
     public function patVisit(){
         $input = $_POST;
         $input["age"] = date("Y") -  $input["yob"];
+        General::addPat($input);
         return view("reception.patVisit", compact("input"));
     }
 
@@ -62,7 +63,7 @@ class ReceptionController extends Controller
         return General::getdocs($_POST["spec"]);
     }
 
-    public function addPat(Request $request){
+    public function addPatToQ(Request $request){
         if(isset($_POST["doctor"])){
             General::addToQ($_POST["doctor"],$_POST["patId"]);
         }

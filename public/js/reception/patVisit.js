@@ -16,9 +16,9 @@ $("#specSelect").change(function(){
                         s = '<input type="radio" name="doctor" value="' + data[i]["id"] + '" >' + data[i]["name"] + '  ' + data[i]["queue"].length +'   '+'Available<br>';
                     else
                         s = '<input type="radio" name="doctor" value="' + data[i]["id"] + '" >' + data[i]["name"] + '  ' + data[i]["queue"].length +'<br>';
-                    $("#Doctors").append(s);
+                    $("#docts").append(s);
                 }
-                $("#Doctors").append("<input type='submit'/>");
+                $("#docts").append("<input type='submit'/>");
             }
         });
 })

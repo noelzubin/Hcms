@@ -2,11 +2,15 @@
 
 namespace App\myfiles;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use App\patient;
+use Mockery\CountValidator\Exception;
+use App\lpatients;
 
 
 /**
@@ -58,6 +62,34 @@ class General{
             }
         }
         return $docs;
+    }
+
+    public static function addPat($patient){
+        $pat = patient::where("uid", $patient["uid"])->first();
+        if($pat == null) {
+            $pat = new patient;
+            $pat->name = $patient["name"];
+            $pat->uid = $patient["uid"];
+            $pat->gender = $patient["gender"];
+            $pat->yob = $patient["yob"];
+            $pat->gname = $patient["gname"];
+            $pat->house = $patient["house"];
+            $pat->street = $patient["street"];
+            $pat->lm = $patient["lm"];
+            $pat->dist = $patient["dist"];
+            $pat->state = $patient["state"];
+            $pat->pc = $patient["pc"];
+            $pat->age = $patient["age"];
+            $pat->hospital = session("hospid");
+            $pat->save();
+        }
+        $pat = lpatients::find($patient["uid"]);
+        if( $pat == null ){
+            $pat = new lpatients;
+            $pat->id = $patient["uid"];
+            $pat->name = $patient["name"];
+            $pat->save();
+        }
     }
 }
 

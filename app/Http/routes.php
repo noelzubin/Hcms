@@ -59,5 +59,5 @@ Route::group(
     Route::get('desk/logout', "ReceptionController@logout");
     Route::post('desk/patVisit', "ReceptionController@patVisit");
     Route::post('desk/getDocs', "ReceptionController@getDocs");
-    Route::post('desk/addPat', "ReceptionController@addPat");
+    Route::post('desk/addPat', "ReceptionController@addPatToQ");
 });
