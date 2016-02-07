@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -23,6 +24,14 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+
+
+
+
+Event::listen('illuminate.query', function($sql)
+{
+    Log::info("error");
+});
 
 
 /*
