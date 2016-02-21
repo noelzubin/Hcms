@@ -19,6 +19,13 @@ use App\Http\Requests;
  */
 class myAuth{
 
+    //sessid for php sessions
+    // logged in:
+    public static $isDoctor = 1;
+    public static $isReceptionist = 2;
+    public static $isPatient = 3;
+    public static $isPharmacy = 4;
+    
 
     public static function check($sessid){
         if (Session::has('loggedin')){

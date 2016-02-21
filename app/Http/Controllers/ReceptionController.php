@@ -17,6 +17,7 @@ class ReceptionController extends Controller
 {
 
     public function home(){
+        session(["hospid"=>2]);
         if(MyAuth::check(2))
             return view("reception.home");
         else

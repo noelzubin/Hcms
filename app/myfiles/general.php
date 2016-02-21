@@ -19,12 +19,6 @@ use App\lpatients;
  * Class myAuth
  * @package App\myfiles
  *
- * for phpsessions(sessid):
- *   loggedin:
- *      1. Doctor
- *      2. Receptionists
- *      3. Patients
- *      4. Pharmacies
  */
 class General{
 

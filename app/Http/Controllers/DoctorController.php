@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\doctor;
+use App\ldoctor;
 use App\myfiles\General;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -19,7 +20,8 @@ class DoctorController extends Controller
      * home page of doctor , accessible only when logged in
      */
     public function home(){
-        if(MyAuth::check(1)){
+        session(["hospid"=>2]);
+        if(MyAuth::check(MyAuth::$isDoctor)){
             $patQ = General::getDocQ();
             return view("doctor.home",compact("patQ"));
         }
@@ -81,7 +83,7 @@ class DoctorController extends Controller
 
 
     public function signupdoc(Request $request){
-        $this->validate($request, ["name"=>"required|min:2","password"=>"required|min:5","hospital"=>"required"]);
+        $this->validate($request, ["name"=>"required|min:2","password"=>"required|min:5","hospital"=>"required","speciality"=>"required"]);
         $input = $_POST;
         $doc = new doctor;
         $doc->name = $input["name"];
@@ -90,8 +92,11 @@ class DoctorController extends Controller
         $doc->save();
         if(session("hospid") == $doc->hospital)
         {
-            $doc = DB::connection('centraldb')->select('select * from Doctors where name = ?', [$doc->name])[0];
-            DB::connection('mysql')->insert('insert into ldoctors (id, name) values (?, ?)', [$doc->id, $doc->name]);
+            $ldoc = new ldoctor();
+            $ldoc->id = $doc->id;
+            $ldoc->name = $doc->name;
+            $ldoc->speciality = $input["speciality"];
+            $ldoc->save();
         }
         return redirect("doctor/");
     }

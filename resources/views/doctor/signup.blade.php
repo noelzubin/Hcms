@@ -11,6 +11,12 @@
         <input type="text" name="name">
         <label for="password">password:</label>
         <input type="password" name="password">
+        <input type="text" name="speciality" id="speciality" value="ENT" list="specls">
+           <datalist id="specls">
+               <option value="GP">
+               <option value="ENT">
+               <option value="SRG">
+           </datalist>
         <label for="hospitals">hospital Name:</label>
         {{--<input type="text" name="hospitals">--}}
         @foreach( $hosp as $hospital )

@@ -33,8 +33,6 @@
 */
 Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
-//        if($_SERVER["SERVER_ADDR"] == "192.168.0.4" || $_SERVER["SERVER_ADDR"] == "::1")
-//            session(["hospid"=>2]);
         session(["hospid"=>2]);
         return view('welcome');
     });
