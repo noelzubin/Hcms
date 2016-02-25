@@ -14,7 +14,7 @@
         <tr> <td> address </td><td>{{ $input["house"]}} HOUSE<br> {{ $input["street"] ."   ". $input["lm"]  }} <br> {{$input["pc"]}} </td> </tr>
     </table>
 
-    <input type="text" id="specSelect" value="-select-" list="specls">
+    <input type="text" id="specSelect" value="" list="specls">
     <datalist id="specls">
         <option value="GP">
         <option value="ENT">

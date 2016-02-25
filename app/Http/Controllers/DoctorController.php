@@ -119,7 +119,7 @@ class DoctorController extends Controller
             DB::connection('centraldb')->insert('insert into MR'.$_POST["uid"].' (docid,hospid,type,data) values (?, ?, ?, ?)', [ session("loggedUserId"),session("hospid"),"ilns", $_POST["ilns"] ]);
         }
         General::popQ($_POST["uid"]);
-        return "added";
+        return redirect("doctor/");
     }
 
 }

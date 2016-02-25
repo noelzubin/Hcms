@@ -11,7 +11,7 @@
         <input type="text" name="name">
         <label for="password">password:</label>
         <input type="password" name="password">
-        <input type="text" name="speciality" id="speciality" value="ENT" list="specls">
+        <input type="text" name="speciality" id="speciality" value="" list="specls">
            <datalist id="specls">
                <option value="GP">
                <option value="ENT">
@@ -19,9 +19,17 @@
            </datalist>
         <label for="hospitals">hospital Name:</label>
         {{--<input type="text" name="hospitals">--}}
-        @foreach( $hosp as $hospital )
-            <input type="radio" name="hospital" value="{{$hospital->id}}"> {{$hospital->name}} <br>
-        @endforeach
+
+        <input type="text" id="hospitals" value="" list="hosps">
+        <datalist id="hosps">
+            @foreach( $hosp as $hospital )
+                <option data-value="{{ $hospital->id }}" value="{{ $hospital->name }}">
+            @endforeach
+        </datalist>
+        {{--@foreach( $hosp as $hospital )--}}
+            {{--<input type="radio" name="hospital" value="{{$hospital->id}}"> {{$hospital->name}} <br>--}}
+        {{--@endforeach--}}
+
         {{ $hosp[0]->name }}
         <input type="submit" value="submit">
         @if ($errors->any())
