@@ -81,9 +81,10 @@ class General{
             $sql = "create table `MR". $patient["uid"] ."` (
                 `id` int unsigned not null auto_increment primary key,
                 `docid` int not null,
-                 `hospid` int not null,
+                `hospid` int not null,
                 `type` varchar(255) not null,
                 `data` varchar(255) not null,
+                `flag` int unsigned not null,
                 `created_at` timestamp not null,
                 `updated_at` timestamp not null)
                 default character set utf8 collate utf8_unicode_ci";

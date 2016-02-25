@@ -109,11 +109,18 @@ class DoctorController extends Controller
     }
 
     public function patResult(){
-        if(strlen($_POST["pres"]) > 0){
-            DB::connection('centraldb')->insert('insert into MR'.$_POST["uid"].' (docid,hospid,type,data) values (?, ?, ?, ?)', [ session("loggedUserId"),session("hospid"),"pres", $_POST["pres"] ]);
+        $prescription = $_POST["pres"];
+        if(strlen($prescription) > 0){
+            $prescription = explode(",",$prescription);
+            foreach($prescription as $pres)
+            DB::connection('centraldb')->insert('insert into MR'.$_POST["uid"].' (docid,hospid,type,data) values (?, ?, ?, ?)', [ session("loggedUserId"),session("hospid"),"pres", $pres]);
         }
-        if(strlen($_POST["proc"]) > 0){
-            DB::connection('centraldb')->insert('insert into MR'.$_POST["uid"].' (docid,hospid,type,data) values (?, ?, ?, ?)', [ session("loggedUserId"),session("hospid"),"proc", $_POST["proc"] ]);
+
+        $procedure = $_POST["proc"];
+        if(strlen($procedure) > 0){
+            $procedure = explode(",",$procedure);
+            foreach($procedure as $proc)
+                DB::connection('centraldb')->insert('insert into MR'.$_POST["uid"].' (docid,hospid,type,data) values (?, ?, ?, ?)', [ session("loggedUserId"),session("hospid"),"proc", $proc]);
         }
         if(strlen($_POST["ilns"]) > 0){
             DB::connection('centraldb')->insert('insert into MR'.$_POST["uid"].' (docid,hospid,type,data) values (?, ?, ?, ?)', [ session("loggedUserId"),session("hospid"),"ilns", $_POST["ilns"] ]);

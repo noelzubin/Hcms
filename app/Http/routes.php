@@ -52,7 +52,7 @@ Route::group( ['middleware' => ['web']], function () {
 });
 
 
-// Receptions
+// Reception
 Route::group(
     ['middleware' => ['web']], function () {
     Route::get('desk', "ReceptionController@home");

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>patient login</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    {{--<link href="css/bootstrap.min.css" rel="stylesheet">--}}
+    <link href="css/qrscan.css" rel="stylesheet">
 </head>
 <body>
 

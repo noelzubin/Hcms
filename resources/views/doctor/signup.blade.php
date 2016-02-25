@@ -17,20 +17,7 @@
                <option value="ENT">
                <option value="SRG">
            </datalist>
-        <label for="hospitals">hospital Name:</label>
-        {{--<input type="text" name="hospitals">--}}
-
-        <input type="text" id="hospitals" value="" list="hosps">
-        <datalist id="hosps">
-            @foreach( $hosp as $hospital )
-                <option data-value="{{ $hospital->id }}" value="{{ $hospital->name }}">
-            @endforeach
-        </datalist>
-        {{--@foreach( $hosp as $hospital )--}}
-            {{--<input type="radio" name="hospital" value="{{$hospital->id}}"> {{$hospital->name}} <br>--}}
-        {{--@endforeach--}}
-
-        {{ $hosp[0]->name }}
+        <input type="hidden" name="hospital" i value="{{ session("hospid") }}" >
         <input type="submit" value="submit">
         @if ($errors->any())
             @foreach ($errors->all() as $error)
