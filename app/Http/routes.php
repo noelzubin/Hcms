@@ -36,6 +36,10 @@ Route::group(['middleware' => ['web']], function () {
         session(["hospid"=>2]);
         return view('welcome');
     });
+    Route::get('/#', function () {
+        session(["hospid"=>2]);
+        return view('welcome');
+    });
 });
 
 

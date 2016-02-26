@@ -26,7 +26,9 @@ class DoctorController extends Controller
             return view("doctor.home",compact("patQ"));
         }
         else
-            return redirect()->action('DoctorController@login');
+            return redirect("doctor/login");
+//            return redirect()->action('DoctorController@login');
+
     }
 
 

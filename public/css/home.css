@@ -1,0 +1,199 @@
+@font-face {
+    font-family: Segoe;
+    src: url("resources/fonts/segoeui.ttf");
+}
+@font-face {
+    font-family: "Segoe Bold";
+    src: url("resources/fonts/segoeuib.ttf");
+}
+
+* {
+    padding:0;
+    margin:0;
+}
+
+body {
+    padding:0;
+    height: auto;
+    font-family: "Segoe";
+}
+
+#container {
+    background-image: url("resources/homeback.jpg");
+    height:100vh;
+    background-size: cover;
+}
+
+#overlay {
+    background: rgba(0,0,0,.40);
+    height: 100%;
+    width: 100%;
+}
+
+header {
+    display: flex;
+    height:100px;
+    align-items:flex-end;
+    align-content:space-between;
+    color: rgba(255,255,255,.80);
+}
+
+header > #title {
+    margin-left:45px;
+    display: inline-block;
+    flex:1;
+    text-align: left;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+#login {
+    margin-right: 40px;
+    font-size: 20px;
+    font-weight:300;
+    letter-spacing: 1.4px;
+    display: inline-block;
+    flex:1;
+    text-align: right;
+    cursor: pointer;
+}
+
+#login:hover{
+    color: white;
+}
+
+#centerCont {
+    height:75px;
+    display: block;
+    width:80%;
+    margin: 10% auto 0px auto;
+    align-self: center;
+    color: rgba(255,255,255,.80);
+}
+
+#centerCont #title, #centerCont #content, #centerCont #loginButt{
+    display: block;
+    margin:0px auto;
+    text-align: center;
+    font-weight: 100;
+}
+
+#centerCont #title {
+    margin-top: 90px;
+    font-size: 5em;
+}
+
+#centerCont #title strong {
+    font-family:"Segoe Bold";
+}
+
+#centerCont #content {
+    margin-top: 35px;
+    font-size: 25px;
+}
+
+#centerCont #loginButt {
+    margin-top: 45px;
+    background: #1c77c3;
+    width:285px;
+    height: 65px;
+    line-height: 65px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+#centerCont #loginButt #heart {
+    font-size: 53px;
+    margin-top: 10px;
+    display: inline;
+    position: relative;
+}
+
+#centerCont #loginButt #start {
+    font-size: 30px;
+    margin-top: 10px;
+    display: inline ;
+    position: relative;
+    top:-10px;
+    padding-left: 30px;
+}
+
+#centerCont #loginButt:hover {
+    color: dodgerblue;
+}
+
+#centerCont #loginButt:hover #start {
+    color: white;
+}
+#centerCont #loginButt:hover #heart {
+    color: white;
+}
+
+
+/*second page*/
+#logins{
+    height: 100vh;
+    color:#3c3c3c;
+    overflow: hidden;
+}
+
+#youAreA {
+    margin-top: 60px;
+    font-size: 50px;
+    color:#3c3c3c;
+}
+
+#cardsCont {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    margin-top: 20px;
+    padding-top:10px;
+    width:20%;
+    flex: 1;
+}
+
+#cardsCont img {
+    width: 90%;
+    padding-left:5%;
+}
+#cardsCont .cardTitle{
+    width:80%;
+    margin: 0 auto;
+    line-height: 35px;
+    text-align: center;
+    font-size:30px;
+}
+
+#cardsCont .loginButton {
+    text-decoration: none;
+    display: block;
+    font-size: 30px;
+    margin: 0 auto;
+    margin-top: 15px;
+    height: 45px;
+    width:70%;
+    text-align: center;
+    background: rgba(0,0,0,.2);
+    color: rgba(1,1,1,.3);
+    border-radius: 25px;
+}
+
+#doctor:hover .loginButton {
+    color: white;
+    background:dodgerblue ;
+}
+#pharmacist:hover .loginButton {
+    color: white;
+    background:dodgerblue ;
+}
+#receptionist:hover .loginButton {
+    color: white;
+    background:dodgerblue ;
+}
+#patient:hover .loginButton {
+     color: white;
+     background:dodgerblue ;
+ }
