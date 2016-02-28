@@ -1,0 +1,135 @@
+@font-face {
+    font-family: Segoe;
+    src: url("../resources/fonts/segoeui.ttf");
+}
+@font-face {
+    font-family: "Segoe Bold";
+    src: url("../resources/fonts/segoeuib.ttf");
+}
+
+* {
+    padding:0;
+    margin:0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    background-color: #e8e9ec;
+    font-family: Segoe;
+}
+
+#sidebar {
+    position: fixed;
+    height:100vh;
+    width:250px;
+    background : #1c77c3;
+    color: white;
+    padding-left: 15px;
+}
+
+#companyName {
+    margin-top: 5px;
+    font-size: 1.5em;
+    font-weight:bolder;
+    cursor: pointer;
+}
+
+#docName {
+    margin-top: 30px;
+    font-weight: 100;
+    letter-spacing: 2px;
+    font-size:20px;
+}
+
+
+#patientItem{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#patientItem #title {
+    padding-left: 15px;
+    display: inline;
+}
+#patientItem #countPat {
+    padding-right: 20px;
+}
+
+#container {
+    margin-left:250px;
+}
+
+#header {
+    height: 50px;
+    width:100%;
+    background: white;
+    display: flex;
+    color: #797979;
+    justify-content: space-between;
+}
+
+#hospName {
+    line-height: 50px;
+    font-size: 25px;
+    margin-left: 40px;
+}
+
+#logout  a{
+    line-height: 50px;
+    font-size:20px;
+    margin-right: 15px;
+    cursor: pointer;
+    color: #797979;;
+}
+
+#error {
+    margin-left: 40px;
+    font-family:Helvetica;
+    font-size: 90px;
+    color:rgba(0,0,0,0.2);
+}
+
+#patients {
+    margin-left: 40px;
+}
+
+.patient{
+    height: 50px;
+    width:350px;
+    margin:20px;
+    background-color: dodgerblue;
+    font-family: "Segoe Bold";
+    font-weight: bold;
+    font-size:23px;
+    color:white;
+    padding-left: 20px;
+    line-height: 50px;
+    cursor: pointer;
+}
+
+.checked {
+    background-color: #163D63;
+}
+
+#submit {
+    background-color:dodgerblue;
+    border-radius:28px;
+    border:none;
+    font-family: "Segoe Bold";
+    cursor:pointer;
+    color:white;
+    font-size:20px;
+    padding:12px 25px;
+    position: fixed;
+    top:50vh;
+    right:10%;
+    cursor: pointer;
+
+}
+
+

@@ -11,11 +11,14 @@
                 <section id="quote">Restore a man to his health, his purse lies open to thee. ~Robert Burton</section>
                 <img src="../css/resources/doctor.png" alt="">
                 <section id="title"> THE DOCTOR </section>
-                <section id="home"> Home</section>
+                <section id="home"><a href="/">Home</a> </section>
             </div>
-            <div id="right">
-
-            </div>
+            <form action="#" method="POST" id="right">
+                <input id="username" type="text" name="name" placeholder="username">
+                <input id="password" type="password" name="password" placeholder="password">
+                <input id="submit" type="submit" value="Login">
+                <a href="signup">Sign Up</a>
+            </form>
         </section>
     </body>
     <div id="container"></div>

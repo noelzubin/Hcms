@@ -124,7 +124,7 @@ input:-ms-input-placeholder {
     margin-top:70px;
 }
 #password {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 
@@ -157,4 +157,18 @@ input:-ms-input-placeholder {
     font-size:12px;
     text-align: center;
     cursor: pointer;
+}
+
+#speciality {
+    padding-left: 5px;
+    margin:25px auto 0 auto;
+    height:30px;
+    display: block;
+    background: transparent;
+    border: none;
+    border-bottom: solid 2px rgba(255,255,255,0.7);
+    font-size: 15px;
+    color: white;
+    width: 65%;
+    letter-spacing: 2px;
 }

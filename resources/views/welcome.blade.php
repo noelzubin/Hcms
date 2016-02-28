@@ -57,7 +57,21 @@
                 </div>
             </div>
         </div>
-
+        <script src="js/jquery.js"></script>
+        <script>
+            $('#login').click(function(){
+                $('html, body').animate({
+                    scrollTop: $(".card").offset().top
+                }, 600 ,'swing');
+                return false;
+            });
+            $('#loginButt').click(function(){
+                $('html, body').animate({
+                    scrollTop: $(".card").offset().top
+                }, 600 ,'swing');
+                return false;
+            });
+        </script>
     </body>
 </html>
 

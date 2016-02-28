@@ -23,7 +23,8 @@ class DoctorController extends Controller
         session(["hospid"=>2]);
         if(MyAuth::check(MyAuth::$isDoctor)){
             $patQ = General::getDocQ();
-            return view("doctor.home",compact("patQ"));
+            $docName = General::getDocName();
+            return view("doctor.home",compact("patQ","docName"));
         }
         else
             return redirect("doctor/login");
@@ -103,8 +104,9 @@ class DoctorController extends Controller
         return redirect("doctor/");
     }
 
-    public function patTreat(){
-        $id = $_POST["id"];
+    public function patTreat(Request $request){
+        $this->validate($request, ["patId"=>"required"]);
+        $id = $_POST["patId"];
         $patient = General::getPatient($id);
         $MRec = General::getMedRec($id);
         return view('doctor.patTreat',compact("patient","MRec"));

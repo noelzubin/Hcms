@@ -99,6 +99,10 @@ class General{
         }
     }
 
+
+    /**
+     * @return array of patients of logged in doctor
+     */
     public static function getDocQ(){
         $docQ = DB::select('select `queue` from ldoctors where id = "' . session("loggedUserId") .'"' )[0]->queue;
         $docQ = array_filter(explode(",",$docQ));
@@ -112,6 +116,14 @@ class General{
             array_push($arr, $ar);
         }
         return $arr;
+    }
+
+    /**
+     * @return String name of the logged in doctor
+     */
+    public static function getDocName(){
+        $name = DB::select('select `name` from ldoctors where id = "' . session("loggedUserId") .'"' )[0]->name;
+        return $name;
     }
 
     public static function getPatient($uid){
