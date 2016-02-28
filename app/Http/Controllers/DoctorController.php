@@ -105,11 +105,14 @@ class DoctorController extends Controller
     }
 
     public function patTreat(Request $request){
+        $docName = General::getDocName();
         $this->validate($request, ["patId"=>"required"]);
         $id = $_POST["patId"];
         $patient = General::getPatient($id);
-        $MRec = General::getMedRec($id);
-        return view('doctor.patTreat',compact("patient","MRec"));
+        $ilns = General::getMedRecIllns($id);
+        $proc = General::getMedRecProc($id);
+        $pres = General::getMedRecPres($id);
+        return view('doctor.patTreat',compact("patient","ilns","proc","pres","docName"));
     }
 
     public function patResult(){

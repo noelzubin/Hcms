@@ -22,6 +22,10 @@ use App\lpatients;
  */
 class General{
 
+    /**
+     * @param $spec
+     * @return mixed
+     */
     public static function getdocs($spec){
         $doctors = DB::select('select `id`,`queue`,`name` from ldoctors where speciality = "' . $spec .'"' );
         $doctors = self::getqueue($doctors);
@@ -34,6 +38,10 @@ class General{
         return json_encode($doctors);
     }
 
+    /**
+     * @param $docs
+     * @return mixed
+     */
     public static function getqueue($docs){
         foreach($docs as $doc){
             $doc->queue = explode("," , $doc->queue);
@@ -41,13 +49,20 @@ class General{
         return $docs;
     }
 
-    public static function addToQ($doc,$pat){
+    /**
+     * @param $doc
+     * @param $pat
+     */
+    public static function addToQ($doc, $pat){
         $docQ = DB::select('select `queue` from ldoctors where id = "' . $doc .'"' )[0]->queue;
         $docQ = $docQ .",".$pat;
         $docQ = DB::update('update ldoctors set queue = ? where id = ?', [$docQ,$doc]);
         return;
     }
 
+    /**
+     * @return array
+     */
     public static function getloggedinDocs(){
         $docs = array();
         $sesns = DB::select('select `payload` from sessions');
@@ -60,6 +75,9 @@ class General{
         return $docs;
     }
 
+    /**
+     * @param $patient
+     */
     public static function addPat($patient){
         $pat = patient::where("uid", $patient["uid"])->first();
         if($pat == null) {
@@ -126,16 +144,55 @@ class General{
         return $name;
     }
 
+    /**
+     * @param $uid
+     * @return mixed
+     */
     public static function getPatient($uid){
         $pat = patient::find($uid);
         return $pat;
     }
 
+    /**
+     * @param $uid
+     * @return mixed
+     */
     public static function getMedRec($uid){
         $medr = DB::connection("centraldb")->select('select * from MR'.$uid);
         return $medr;
     }
 
+
+    /**
+     * @param patientId
+     * @return 20 illness records
+     */
+    public static function getMedRecIllns($uid){
+        $medr = DB::connection("centraldb")->select('select * from MR'.$uid .' where `type` = "ilns" order by `id` desc LIMIT 10' );
+        return $medr;
+    }
+
+    /**
+     * @param patientId
+     * @return 20 procedure records
+     */
+    public static function getMedRecProc($uid){
+        $medr = DB::connection("centraldb")->select('select * from MR'.$uid .' where `type` = "proc" order by `id` desc LIMIT 10' );
+        return $medr;
+    }
+
+    /**
+     * @param patientId
+     * @return 20 prescription records
+     */
+    public static function getMedRecPres($uid){
+        $medr = DB::connection("centraldb")->select('select * from MR'.$uid .' where `type` = "pres" order by `id` desc LIMIT 10' );
+        return $medr;
+    }
+
+    /**
+     * @param $id
+     */
     public static function popQ($id){
         $docQ = DB::select('select `queue` from ldoctors where id = "' . session("loggedUserId") .'"' )[0]->queue;
         $docQ = array_filter(explode(",",$docQ));
