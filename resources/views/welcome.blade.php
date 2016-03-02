@@ -48,7 +48,7 @@
                 <div class="card" id="receptionist">
                     <img src="css/resources/receptionist.png" alt="">
                     <section class="cardTitle">The Desk <br> guy</section>
-                    <a href="#" class="loginButton"> Login  </a>
+                    <a href="desk" class="loginButton"> Login  </a>
                 </div>
                 <div class="card" id="patient">
                     <img src="css/resources/patient.png" alt="">

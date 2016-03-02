@@ -1,0 +1,154 @@
+@font-face {
+    font-family: Segoe;
+    src: url("../resources/fonts/segoeui.ttf");
+}
+
+*{
+    padding:0;
+    margin:0;
+}
+
+body {
+    font-family: Segoe;
+    background: rgba(0,0,0,0.2);
+
+}
+
+#header {
+    height:50px;
+    background-color: white;
+}
+
+#header section {
+    display: inline-block;
+}
+
+#header #company {
+    width:250px;
+    background: dodgerblue;
+    font-size: 1.5em;
+    color: white;
+    font-weight:bolder;
+    line-height:50px;
+    padding-left:20px;
+    cursor: pointer;
+}
+
+#header #title {
+    line-height: 50px;
+    font-size: 25px;
+    margin-left: 30px;
+    color:#797979;
+}
+
+#header #logout a{
+    position: absolute;
+    right: 15px;
+    top:0;
+    line-height: 50px;
+    font-size: 20px;
+    margin-right: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #797979;
+}
+
+#specialitySelect {
+    width: 70%;
+    display: block;
+    margin:0 auto;
+    margin-top:50px;
+}
+
+#specialitySelect label {
+    color:#3c3c3c;
+    font-size: 28px;
+    padding-right:10px;
+}
+
+#specialitySelect #specSelect {
+    font-size: 28px;
+    color:#3c3c3c;
+    height:40px;
+    width:250px;
+    padding-left: 10px;
+    letter-spacing: 2px;
+    border:none;
+}
+
+#specialitySelect #getdoctors {
+    padding:0;
+    border:0;
+    background-color: white;
+    height:40px;
+    width:40px;
+    color:#797979;
+    position: relative;
+    font-size:28px;
+    left:-3px;
+    cursor: pointer;
+    font-weight:bolder;
+}
+
+#specialitySelect #getdoctors:hover {
+    color: dodgerblue;
+}
+
+#DocError {
+    width: 70%;
+    display: block;
+    margin:0 auto;
+    margin-top:50px;
+    color:#797979;
+    font-size:40px;
+}
+
+#docts {
+    width:80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.doctor {
+    background: white;
+    width:100%;
+    height:40px;
+    margin-top: 30px;
+    color: #797979;
+    padding-left: 20px;
+    line-height: 40px;
+}
+
+.doctor .name{
+    display: inline-block;
+    font-size: 22px;
+    width:50%;
+    letter-spacing:2px;
+}
+.doctor .queue{
+    display: inline-block;
+    font-size: 14px;
+    width:30%;
+}
+.doctor .availability {
+    display: inline-block;
+    font-size: 16px;
+}
+
+.selected {
+    background: dodgerblue;
+    color:white;
+}
+
+input[type="submit"] {
+    background: dodgerblue;
+    height:35px;
+    width:100px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    border:none;
+    border-radius:25px;
+    float: right;
+    margin-top: 35px;
+}

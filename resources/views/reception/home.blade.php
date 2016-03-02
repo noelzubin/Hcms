@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>patient login</title>
-    {{--<link href="css/bootstrap.min.css" rel="stylesheet">--}}
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/qrscan.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/desk/home.css">
 </head>
 <body>
 
 <div class="container" id="QR-Code">
-    <div class="panel panel-info">
         <div class="panel-heading">
             <div class="navbar-form navbar-left">
                 <h4>Patient adhar scan</h4>
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="panel-body text-center">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="well" style="position: relative;display: inline-block;">
                     <canvas width="320" height="240" id="webcodecam-canvas"></canvas>
                     <div class="scanner-laser laser-rightBottom" style="opacity: 0.5;"></div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
 <script type="text/javascript" src="js/qrcode/filereader.js"></script>
 <!-- Using jquery version: -->

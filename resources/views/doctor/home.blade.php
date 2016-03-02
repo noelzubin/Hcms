@@ -21,7 +21,7 @@
     <div id="container">
         <section id="header">
             <div id="hospName">ASTER MED CITY</div>
-            <div id="logout"><a href="doctorr/logout">Logout</a></div>
+            <div id="logout"><a href="doctor/logout">Logout</a></div>
         </section>
         <section id="patients">
             <?php
