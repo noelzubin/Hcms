@@ -67,3 +67,14 @@ Route::group(
     Route::post('desk/getDocs', "ReceptionController@getDocs");
     Route::post('desk/addPat', "ReceptionController@addPatToQ");
 });
+
+// Patient
+Route::group(
+    ['middleware' => ['web']], function () {
+    Route::get('patient', "PatientController@home");
+    Route::get('patient/login', "PatientController@login");
+    Route::post('patient/login', "PatientController@checkLogin");
+    Route::get('patient/signup', "PatientController@signup");
+    Route::post('patient/signup', "PatientController@signHimUp");
+    Route::get('patient/adharReg',"PatientController@adharReg");
+});

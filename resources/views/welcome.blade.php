@@ -53,7 +53,7 @@
                 <div class="card" id="patient">
                     <img src="css/resources/patient.png" alt="">
                     <section class="cardTitle">Just <br> me</section>
-                    <a href="desk" class="loginButton"> Login  </a>
+                    <a href="patient" class="loginButton"> Login  </a>
                 </div>
             </div>
         </div>
