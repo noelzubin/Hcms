@@ -22,7 +22,7 @@
                         WE <strong>CARE</strong>
                     </section>
                     <section id="content">
-                        We are a group of people who care about the poeple you care about
+                        We are a group of people who care about the people you care about
                     </section>
                     <section id="loginButt">
                        <div id="heart">&#10084</div> <div id="start">Get Started </div>

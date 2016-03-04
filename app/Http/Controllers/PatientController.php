@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\patient;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -85,7 +86,7 @@ class PatientController extends Controller
     public function signHimUp() {
         $name = $_POST["name"];
         $password = $_POST["password"];
-        if($this->isAPatient($name)){
+        if($this->isAPatient($name)) {
             $pat = $this->getPatient($name);
             if($pat->password != "" && $pat->password != null) {
                 return redirect("patient/login");
@@ -94,11 +95,21 @@ class PatientController extends Controller
                 return redirect("patient/login");
             }
         }
+        session(["password"=>$password]);
         return redirect("patient/adharReg");
     }
 
     public function adharReg(){
-        return "reached here";
+        return view("patient.adharReg");
+    }
+
+    public function addPatient() {
+        $input = $_POST;
+        $input["age"] = date("Y") - $input["yob"];
+        general::addPat($input);
+        $pat = patient::where("uid", $input["uid"])->first();
+        $pat->password = Hash::make(session("password"));
+        return redirect("patient/login");
     }
 
 

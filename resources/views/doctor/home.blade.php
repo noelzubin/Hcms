@@ -8,6 +8,7 @@
 <body>
     <div id="sidebar">
         <div id="companyName">
+
             <a href="/">Tacoe</a>
         </div>
         <div id="docName">
@@ -44,7 +45,7 @@
         pat = null
         patients = $(".patient");
         patients.on("click",function(){
-            pat = $(this);
+             pat = $(this);
             $.each(patients, function(ind,val){
                patients[ind].classList.remove("checked")
             });

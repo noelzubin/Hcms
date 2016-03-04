@@ -76,5 +76,7 @@ Route::group(
     Route::post('patient/login', "PatientController@checkLogin");
     Route::get('patient/signup', "PatientController@signup");
     Route::post('patient/signup', "PatientController@signHimUp");
+    Route::get('patient/logout', "PatientController@logout");
     Route::get('patient/adharReg',"PatientController@adharReg");
+    Route::post('patient/adharReg',"PatientController@addPatient");
 });
