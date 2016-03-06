@@ -17,6 +17,8 @@
         <section class="sideItems selected" id="treatlink"> treat </section>
         <section class="sideItems" id="infolink"> info </section>
     </div>
+    <div id="diagnosticsItem"> diagnostics </div>
+
 </div>
 <div id="container">
     <section id="header">

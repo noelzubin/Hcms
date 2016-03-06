@@ -135,5 +135,19 @@ class DoctorController extends Controller
         General::popQ($_POST["uid"]);
         return redirect("doctor/");
     }
+    
+    public function getPrevPatients(){
+        $uids = DB::connection('centraldb')->select('select `uid` from `patients`');
+        $prevPats = [];
+        for($i=0 ; $i < sizeof($uids) ; $i++){
+            $pat = DB::connection("centraldb")->select('select * from `MR'.$uids[$i]->uid.'` where `docid` = '. $_POST["docid"] .' and `type` = "ilns" ');
+            if(sizeof($pat) > 0){
+                $pat = DB::connection("centraldb")->select('select * from `patients` where `uid` = "'. $uids[$i]->uid .'"' );
+            }
+                array_push($prevPats,$pat);
+        }
+
+        return json_encode($prevPats);
+    }
 
 }

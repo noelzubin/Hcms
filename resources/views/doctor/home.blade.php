@@ -18,12 +18,18 @@
             <section id="title"> patients </section>
             <section id="countPat"> {{ sizeof($patQ) }} </section>
         </div>
+
+        <div id="previousPatients">
+            <section id="title"> Previous Patients </section>
+        </div>
+
     </div>
     <div id="container">
         <section id="header">
             <div id="hospName">ASTER MED CITY</div>
             <div id="logout"><a href="doctor/logout">Logout</a></div>
         </section>
+
         <section id="patients">
             <?php
                 if( sizeof($patQ) == 0)
@@ -38,6 +44,8 @@
                 }
             ?>
         </section>
+        <section id="previousPats" style="display: none;"></section>
+        <input type="hidden" id="docId" value="{{ session("loggedUserId") }}">
     </div>
 
     <script src="js/jquery.js"></script>
@@ -51,7 +59,28 @@
             });
             $(this).addClass("checked");
             $("#patId").val(pat.attr("value"));
-        })
+        });
+
+        (function(){
+
+            $("#patientItem").click(function () {
+                $("#previousPats").hide();
+                $("#patients").show();
+            });
+            $("#previousPatients").click(function () {
+                $("#patients").hide();
+                $("#previousPats").show();
+                docId = $("#docId").val()
+                $.post( "doctor/getPrevPatients", {docid: docId} ,function( data ) {
+                    data = JSON.parse(data);
+                    prevPats = $("#previousPats").html("");
+                    for(i=0;i<data[0].length;i++){
+                        prevPats.html(prevPats.html() + ' <section class="prevPats" value="' + data[0][i]["uid"] + '"> ' + data[0][i]["name"] + '   </section> ')
+                    }
+                });
+            });
+
+        })();
     </script>
 
 </body>

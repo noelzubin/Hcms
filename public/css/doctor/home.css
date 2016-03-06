@@ -60,6 +60,12 @@ body {
     padding-right: 20px;
 }
 
+#previousPatients {
+    margin-top: 25px;
+    padding-left: 15px;
+    margin-left:0px;
+}
+
 #container {
     margin-left:250px;
 }

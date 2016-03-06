@@ -53,6 +53,7 @@ Route::group( ['middleware' => ['web']], function () {
     Route::post('doctor/signup', "DoctorController@signupdoc");
     Route::post('doctor/patTreat', "DoctorController@patTreat");
     Route::post('doctor/patResult', "DoctorController@patResult");
+    Route::post('doctor/getPrevPatients', "DoctorController@getPrevPatients");
 });
 
 
