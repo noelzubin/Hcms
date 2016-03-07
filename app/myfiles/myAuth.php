@@ -25,6 +25,7 @@ class myAuth{
     public static $isReceptionist = 2;
     public static $isPatient = 3;
     public static $isPharmacy = 4;
+    public static $isDiagnostics = 5;
     
 
     public static function check($sessid){

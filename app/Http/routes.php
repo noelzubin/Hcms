@@ -54,6 +54,8 @@ Route::group( ['middleware' => ['web']], function () {
     Route::post('doctor/patTreat', "DoctorController@patTreat");
     Route::post('doctor/patResult', "DoctorController@patResult");
     Route::post('doctor/getPrevPatients', "DoctorController@getPrevPatients");
+    Route::post('doctor/getPatientDets', "DoctorController@getPatDets");
+    Route::post('doctor/addToDiagnostics', "DoctorController@addToDiagnostics");
 });
 
 
@@ -80,4 +82,13 @@ Route::group(
     Route::get('patient/logout', "PatientController@logout");
     Route::get('patient/adharReg',"PatientController@adharReg");
     Route::post('patient/adharReg',"PatientController@addPatient");
+});
+
+// Diagnostics
+Route::group(
+    ['middleware' => ['web']], function () {
+    Route::get('diag', "DiagnosticsController@home");
+    Route::get('diag/login', "DiagnosticsController@login");
+    Route::post('diag/login', "DiagnosticsController@logindiag");
+    Route::get('diag/logout', "DiagnosticsController@logout");
 });

@@ -66,36 +66,52 @@
                 <tr><td>Allergies:</td><td>---</td></tr>
             </table>
         </div>
-        <div class="title">
-            Previous illness:
-        </div>
+
         <div class="dataContainer">
             <table>
+                <thead>
+                <tr><th>Previous Illness </th> <th>Date</th></tr>
+                </thead>
+                <tbody>
                 @foreach($ilns as $ill)
-                    <tr><td> <?php echo date('D, d-m-y', strtotime($ill->created_at)); ?></td><td> {{$ill->data}} </td></tr>
+                    <tr><td> {{$ill->data}} </td><td> <?php echo date('D, d-m-y', strtotime($ill->created_at)); ?></td></tr>
                 @endforeach
+                </tbody>
+
             </table>
-        </div>
-        <div class="title">
-            Previous prescriptions:
         </div>
         <div class="dataContainer">
             <table>
+                <thead>
+                <tr><th>Previous prescription </th> <th>Date</th></tr>
+                </thead>
+                <tbody>
                 @foreach($pres as $prs)
-                    <tr><td>  <?php echo date('D, d-m-y', strtotime($prs->created_at)); ?></td><td> {{$prs->data}} </td></tr>
+                    <tr></td><td> {{$prs->data}} </td><td>  <?php echo date('D, d-m-y', strtotime($prs->created_at)); ?></tr>
                 @endforeach
+                </tbody>
             </table>
-        </div>
-        <div class="title">
-            Previous procedures:
         </div>
         <div class="dataContainer">
             <table>
+                <thead>
+                <tr><th>Previous procedure </th> <th>Date</th></tr>
+                </thead>
+                <tbody>
                 @foreach($proc as $prc)
-                    <tr><td>  <?php echo date('D, d-m-y', strtotime($prc->created_at)); ?></td><td> {{$prc->data}} </td></tr>
+                    <tr><td> {{$prc->data}} </td><td>  <?php echo date('D, d-m-y', strtotime($prc->created_at)); ?></td></tr>
                 @endforeach
+                </tbody>
             </table>
         </div>
+    </div>
+    <div id="treat3" class="deactive">
+        <form action="addToDiagnostics" method="POST">
+            <input type="submit" id="checkBloodPressure" value="Check Blood Pressure" />
+        </form>
+        <section id="curBldp">
+            <span> </span> Blood Pressure: <span id="bldp">---</span>
+        </section>
     </div>
 </div>
 
@@ -105,16 +121,26 @@
         $("#treatlink").click(function(){
             $(this).addClass("selected");
             $("#infolink").removeClass("selected");
-            console.log("clicked t1");
+            $('#diagnosticsItem').removeClass("selected");
             $("#treat1").removeClass("deactive");
-            $("#treat2").addClass("deactive")
+            $("#treat3").addClass("deactive");
+            $("#treat2").addClass("deactive");
         });
         $("#infolink").click(function() {
             $(this).addClass("selected");
+            $('#diagnosticsItem').removeClass("selected")
             $("#treatlink").removeClass("selected");
-            console.log("clicked t2");
+            $("#treat1").addClass("deactive");
+            $("#treat3").addClass("deactive");
             $("#treat2").removeClass("deactive");
-            $("#treat1").addClass("deactive")
+        });
+        $("#diagnosticsItem").click(function() {
+            $(this).addClass("selected");
+            $("#treatlink").removeClass("selected");
+            $("#infolink").removeClass("selected");
+            $("#treat1").addClass("deactive");
+            $("#treat3").removeClass("deactive");
+            $("#treat2").addClass("deactive");
         });
     });
 

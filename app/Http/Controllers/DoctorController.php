@@ -150,4 +150,24 @@ class DoctorController extends Controller
         return json_encode($prevPats);
     }
 
+    public function getPatDets() {
+        $id = $_POST["uid"];
+        $patient = General::getPatient($id);
+        $ilns = General::getMedRecIllns($id);
+        $proc = General::getMedRecProc($id);
+        $pres = General::getMedRecPres($id);
+        $arr = [
+            "patient" => $patient,
+            "ilns" => $ilns,
+            "proc" => $proc,
+            "pres" => $pres
+        ];
+
+        return json_encode($arr);
+    }
+
+    public function addToDiagnostics() {
+        return "here";
+    }
+
 }

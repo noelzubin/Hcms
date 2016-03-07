@@ -40,7 +40,7 @@
                         echo '<div class="patient" value="' . $pat["id"] . '">'. $pat["name"] .'</div>';
                     }
                     echo '<input type="hidden" id="patId" name="patId" value="">
-                        <input id="submit" type="submit" value="Submit"></form>';
+                        <input id="submit" type="submit" value="Submit"></form>' ;
                 }
             ?>
         </section>
@@ -73,13 +73,22 @@
                 docId = $("#docId").val()
                 $.post( "doctor/getPrevPatients", {docid: docId} ,function( data ) {
                     data = JSON.parse(data);
+                    document.d  = data;
                     prevPats = $("#previousPats").html("");
-                    for(i=0;i<data[0].length;i++){
-                        prevPats.html(prevPats.html() + ' <section class="prevPats" value="' + data[0][i]["uid"] + '"> ' + data[0][i]["name"] + '   </section> ')
+                    for(i=0;i<data.length;i++){
+                        prevPats.html(prevPats.html() + ' <section class="prevPats" value="' + data[i][0]["uid"] + '"> ' + data[i][0]["name"] + '   </section> ')
                     }
+
+                    $(".prevPats").each(function(index){
+                        $(this).on("click",function () {
+                            document.d = $(this);
+                            $.post("doctor/getPatientDets",{uid : $(this).attr("value")} , function(data) {
+                               console.log(JSON.parse(data));
+                            });
+                        })
+                    });
                 });
             });
-
         })();
     </script>
 

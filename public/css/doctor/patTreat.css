@@ -93,11 +93,16 @@ body {
     color: #797979;;
 }
 
+#treat1,#treat2,#treat3 {
+    margin-left: 60px;
+}
+
 /*treat 1*/
 #treat1{
     color: #797979;
-    margin-left: 60px;
 }
+
+
 
 #treat1 .title{
     padding-top: 25px;
@@ -135,17 +140,7 @@ input[type="submit"] {
 /*treat 2*/
 #treat2 {
     color: #797979;
-    margin-left: 60px;
-    height: 1000px;
-}
-
-.title {
-    font-size:22px;
-    margin-top:30px;
-}
-
-.dataContainer table td {
-    width:20%;
+     height: 1000px;
 }
 
 .deactive {
@@ -154,4 +149,49 @@ input[type="submit"] {
 
 .selected {
     font-family: "Segoe Bold";
+}
+
+.dataContainer table {
+    font-family: "Segoe", "Lucida Grande", Sans-Serif;
+    width: 600px;
+    border-collapse: collapse;
+    text-align: left;
+    margin: 20px;
+    background: white;
+    border-radius: 5px;
+}
+
+.dataContainer table th {
+    font-size: 16px;
+    font-weight:bold;
+    color: dodgerblue;
+    border-bottom: 2px solid dodgerblue;
+    padding: 10px 8px;
+}
+
+.dataContainer table td {
+    font-size: 14px;
+    font-weight: normal;
+    color: #3c3c3c;
+    padding: 10px 8px;
+    width: 400px;
+}
+
+.dataContainer table tr {
+    margin: 0;
+    outline: 0;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+#checkBloodPressure {
+    background: dodgerblue;
+    color: white;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 20px;
+    padding: 10px;
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
 }

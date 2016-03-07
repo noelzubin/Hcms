@@ -158,7 +158,7 @@ class General{
      * @return mixed
      */
     public static function getMedRec($uid){
-        $medr = DB::connection("centraldb")->select('select * from MR'.$uid);
+        $medr = DB::connection("centraldb")->select('select * from MR'.$uid .' where `type` <> "bldp" ');
         return $medr;
     }
 
