@@ -8,6 +8,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\myfiles\myAuth;
 use App\myfiles\General;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 class DiagnosticsController extends Controller
 {
     //
@@ -17,7 +20,7 @@ class DiagnosticsController extends Controller
         if(MyAuth::check(MyAuth::$isDiagnostics))
             return view("diag.home");
         else
-            return redirect(diag/login);
+            return redirect("diag/login");
     }
 
     public function login() {
@@ -27,12 +30,39 @@ class DiagnosticsController extends Controller
             return view("diag.login");
     }
 
-    public function logindiag() {
-
+    public function logindiag( Request $request) {
+        $this->validate($request, ["id"=>"required","password"=>"required"]);
+        $diag = DB::select("select * from `diagnostics` where `id` = " .$_POST["id"]);
+        if($diag == null)
+            return redirect("diag/login");
+        $diag = $diag[0];
+        if(Hash::check($_POST["password"] , $diag->password )){
+            MyAuth::login(MyAuth::$isDiagnostics,$_POST["id"]);
+            return redirect("diag");
+        }
+        return redirect("diag/login");
     }
 
     public function logout() {
         MyAuth::logout();
         return redirect("diag/login");
+    }
+
+    public function getDiags() {
+        $diags = DB::connection("centraldb")->select('select * from `MR'. $_POST["uid"] .'` where `type`= "bldp" and `flag` = "0"');
+        if($diags == null)
+                return redirect("diag");
+        $diags = $diags[0];
+        $id  = $diags->id;
+        $docId = $diags->docid;
+        $patient = General::getPatient($_POST["uid"]);
+        return view("diag.diagnose",compact("id","patient","docId"));
+    }
+
+    public function diagnosed(Request $request){
+        $this->validate($request, ["mrId"=>"required","bldp"=>"required","docId"=>"required"]);
+        DB::connection("centraldb")->table('MR'.$_POST["patId"])->where('id', $_POST["mrId"])->update(array('flag' => 1,"data"=>$_POST["bldp"]));
+        General::addToQ($_POST["docId"],$_POST["patId"]);
+        return redirect("diag");
     }
 }

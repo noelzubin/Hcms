@@ -107,6 +107,7 @@
     </div>
     <div id="treat3" class="deactive">
         <form action="addToDiagnostics" method="POST">
+            <input type="hidden" name="userId" value="{{$patient->uid}}">
             <input type="submit" id="checkBloodPressure" value="Check Blood Pressure" />
         </form>
         <section id="curBldp">

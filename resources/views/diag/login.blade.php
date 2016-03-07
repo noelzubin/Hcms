@@ -14,7 +14,7 @@
         <section id="home"><a href="/">Home</a> </section>
     </div>
     <form action="#" method="POST" id="right">
-        <input id="username" type="text" name="name" placeholder="adhar name">
+        <input id="username" type="number" min=0 max="99999" name="id" placeholder="id">
         <input id="password" type="password" name="password" placeholder="password">
         <input id="submit" type="submit" value="Login">
     </form>

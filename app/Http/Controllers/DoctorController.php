@@ -167,7 +167,12 @@ class DoctorController extends Controller
     }
 
     public function addToDiagnostics() {
-        return "here";
+        $docid = session("loggedUserId");;
+        $uid = $_POST["userId"];
+        $hospid = session("hospid");
+        DB::connection("centraldb")->table('MR'.$uid)->insert(['docid' =>$docid , 'hospid'=>2, "type"=>"bldp","flag"=>"0"]);
+        General::popQ($uid);
+        return redirect("doctor/");
     }
 
 }

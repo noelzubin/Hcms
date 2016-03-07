@@ -91,4 +91,6 @@ Route::group(
     Route::get('diag/login', "DiagnosticsController@login");
     Route::post('diag/login', "DiagnosticsController@logindiag");
     Route::get('diag/logout', "DiagnosticsController@logout");
+    Route::post('diag/getDiags', "DiagnosticsController@getDiags");
+    Route::post('diag/diagnosed', "DiagnosticsController@diagnosed");
 });
