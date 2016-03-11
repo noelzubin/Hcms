@@ -48,6 +48,7 @@
         <input type="hidden" id="docId" value="{{ session("loggedUserId") }}">
     </div>
 
+
     <script src="js/jquery.js"></script>
     <script>
         pat = null

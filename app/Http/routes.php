@@ -94,3 +94,12 @@ Route::group(
     Route::post('diag/getDiags', "DiagnosticsController@getDiags");
     Route::post('diag/diagnosed', "DiagnosticsController@diagnosed");
 });
+
+//  Pharmacy;
+Route::group(
+    ['middleware' => ['web']], function () {
+    Route::get('phar', "PharmacyController@home");
+    Route::get('phar/login', "PharmacyController@login");
+    Route::post('phar/login', "PharmacyController@logindesk");
+    Route::get('phar/logout', "PharmacyController@logout");
+});

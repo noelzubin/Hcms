@@ -1,7 +1,4 @@
-$("#getdoctors").click(function(){
-    arr = ["GP","ENT","SRG"];
-    if(arr.indexOf($("#specSelect").val().toUpperCase()) > -1)
-        $.post("getDocs" , { spec : $("#specSelect").val() } , function(data){
+$("#getdoctors").click(function(){arr = ["GP","ENT","SRG"];if(arr.indexOf($("#specSelect").val().toUpperCase())>-1);$.post("getDocs" , { spec : $("#specSelect").val() } , function(data){
             data = $.parseJSON(data);
             if(data.length == 0){
                 $("#DocError").html("Sorry could not find any doctors for this speciality");

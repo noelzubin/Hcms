@@ -22,7 +22,13 @@ class PatientController extends Controller
     public function home(){
         session(["hospid"=>2]);
         if(MyAuth::check(MyAuth::$isPatient)){
-            return view("patient.home");
+            $id = session("loggedUserId");
+            $patient = General::getPatient($id);
+            $ilns = General::getMedRecIllns($id);
+            $proc = General::getMedRecProc($id);
+            $pres = General::getMedRecPres($id);
+            $patient = General::getPatient(session("loggedUserId"));
+            return view("patient.home",compact("patient","ilns","proc","pres","patient"));
         }
         else
             return redirect("patient/login");
@@ -114,7 +120,7 @@ class PatientController extends Controller
 
 
     //Helper functions
-
+    
     public function isAPatient($name) {
         $pat = DB::connection('centraldb')->select('select * from patients where `name` = ?',[$name]);
         return (sizeof($pat) > 0);

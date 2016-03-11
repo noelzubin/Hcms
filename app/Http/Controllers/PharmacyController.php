@@ -10,4 +10,5 @@ use App\Http\Controllers\Controller;
 class PharmacyController extends Controller
 {
     //
+    
 }
