@@ -100,6 +100,10 @@ Route::group(
     ['middleware' => ['web']], function () {
     Route::get('phar', "PharmacyController@home");
     Route::get('phar/login', "PharmacyController@login");
-    Route::post('phar/login', "PharmacyController@logindesk");
+    Route::post('phar/login', "PharmacyController@loginPhar");
     Route::get('phar/logout', "PharmacyController@logout");
+    Route::get('phar/signup', "PharmacyController@signup");
+    Route::post('phar/signup', "PharmacyController@signupPhar");
+    Route::post('phar/getPres', "PharmacyController@getPres");
+    Route::post('phar/updatePres', "PharmacyController@updatePres");
 });

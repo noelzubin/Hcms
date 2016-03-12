@@ -1,0 +1,174 @@
+@font-face {
+    font-family: Segoe;
+    src: url("../resources/fonts/segoeui.ttf");
+}
+@font-face {
+    font-family: "Segoe Bold";
+    src: url("../resources/fonts/segoeuib.ttf");
+}
+
+a {
+    text-decoration: none;
+}
+
+* {
+    padding: 0;
+    margin:0;
+}
+
+body {
+    font-family: Segoe;
+    color: #3c3c3c;
+    background-image: url("../resources/pattern.png");
+    display: flex;
+    height:100vh;
+    align-items: center;
+    justify-content:center;
+}
+
+#container {
+    height:100vh;
+    width:100%;
+    background: linear-gradient(to right,#290A61,#F30689);
+    opacity: .7;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 1;
+}
+
+#card {
+    z-index: 10;
+    position: relative;
+    height:400px;
+    width: 700px;
+    display: flex;
+    background-color: white;
+}
+
+#left {
+    width:50%;
+    height:100%;
+    text-align: center;
+    color: #8a8a8a;
+}
+
+#left #quote{
+    padding-top: 30px;
+    width:85%;
+    margin:0 auto;
+}
+
+#left img {
+    width:60%;
+}
+
+#left #title {
+    font-size: 20px;
+    letter-spacing: 10px;
+}
+
+#left #home {
+    position: absolute;
+    bottom:15px;
+    left:20px;
+}
+
+#left #home a{
+    color: #8a8a8a;
+}
+
+#right {
+    width:50%;
+    height:100%;
+    background: dodgerblue;
+    height: 100%;
+    color:white;
+}
+
+#username, #password {
+    padding-left: 5px;
+    margin:0 auto;
+    height:30px;
+    display: block;
+    background: transparent;
+    border: none;
+    border-bottom: solid 2px rgba(255,255,255,0.7);
+    font-size: 15px;
+    color: white;
+    width: 65%;
+    letter-spacing: 2px;
+}
+
+#username:focus, #password:focus {
+    border-bottom: solid 3px white;
+}
+
+input::-webkit-input-placeholder {
+    color: rgba(255,255,255,.7) !important;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+    color: rgba(255,255,255,.7) !important;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+    color: rgba(255,255,255,.7) !important;
+}
+
+input:-ms-input-placeholder {
+    color: rgba(255,255,255,.7) !important;
+}
+
+#username {
+    margin-top:70px;
+}
+#password {
+    margin-top: 25px;
+}
+
+
+#submit, #right a {
+    display: block;
+    margin:0 auto;
+    position:relative;
+    cursor: pointer;
+}
+
+#submit {
+    font-family: "Segoe";
+    letter-spacing: 1px;
+    font-size: 18px;
+    color: dodgerblue;
+    background: white;
+    height:30px;
+    width:100px;
+    border:none;
+    border-radius:20px;
+    padding-bottom:10px;
+    margin-top:50px;
+}
+
+#right a {
+    display: block;
+    margin:20px 140px;
+    font-family: Segoe;
+    color: white;
+    font-size:12px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#speciality {
+    padding-left: 5px;
+    margin:25px auto 0 auto;
+    height:30px;
+    display: block;
+    background: transparent;
+    border: none;
+    border-bottom: solid 2px rgba(255,255,255,0.7);
+    font-size: 15px;
+    color: white;
+    width: 65%;
+    letter-spacing: 2px;
+}

@@ -79,8 +79,8 @@ class General{
      * @param $patient
      */
     public static function addPat($patient){
-        $pat = patient::where("uid", $patient["uid"])->first();
-        if($pat == null) {
+        $pat = patient::where("uid", $patient["uid"])->get();
+        if(sizeof($pat) == 0 ) {
             $pat = new patient;
             $pat->name = $patient["name"];
             $pat->uid = $patient["uid"];

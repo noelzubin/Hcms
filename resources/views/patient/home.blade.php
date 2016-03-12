@@ -10,7 +10,7 @@
     <div id="header">
         <section id="company">Tacoe</section>
         <section id="title"> {{ $patient->name }} </section>
-        <section id="logout"><a href="logout">Logout</a></section>
+        <section id="logout"><a href="patient/logout">Logout</a></section>
     </div>
 
     <div id="sidebar">

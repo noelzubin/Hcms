@@ -114,7 +114,8 @@ class PatientController extends Controller
         $input["age"] = date("Y") - $input["yob"];
         general::addPat($input);
         $pat = patient::where("uid", $input["uid"])->first();
-        $pat->password = Hash::make(session("password"));
+        $pat->password = bcrypt(session("password"));
+        $pat->save();
         return redirect("patient/login");
     }
 

@@ -45,6 +45,20 @@
             ?>
         </section>
         <section id="previousPats" style="display: none;"></section>
+        <section id="previousPatDets" style="display:none">
+            <table id="patientTable">
+
+            </table>
+            <table id="ilnsTable">
+
+            </table>
+            <table id="presTable">
+
+            </table>
+            <table id="procTable">
+
+            </table>
+        </section>
         <input type="hidden" id="docId" value="{{ session("loggedUserId") }}">
     </div>
 
@@ -67,10 +81,12 @@
             $("#patientItem").click(function () {
                 $("#previousPats").hide();
                 $("#patients").show();
+                $("#previousPatDets").hide();
             });
             $("#previousPatients").click(function () {
                 $("#patients").hide();
                 $("#previousPats").show();
+                $("#previousPatDets").hide();
                 docId = $("#docId").val()
                 $.post( "doctor/getPrevPatients", {docid: docId} ,function( data ) {
                     data = JSON.parse(data);
@@ -81,10 +97,40 @@
                     }
 
                     $(".prevPats").each(function(index){
+                        var details = ""
                         $(this).on("click",function () {
                             document.d = $(this);
                             $.post("doctor/getPatientDets",{uid : $(this).attr("value")} , function(data) {
-                               console.log(JSON.parse(data));
+                                data = JSON.parse(data);
+                                console.log(data);
+                                details = '<table>' +
+                                        '<tr><td>Name</td><td> ' + data["patient"]["name"] + '  </td></tr>' +
+                                        '<tr><td>Age</td><td> ' + data["patient"]["age"] + ' </td></tr>  ' +
+                                        '<tr><td>Sex</td><td> ' + data["patient"]["gender"]  + ' </td></tr> ' +
+                                        '<tr><td>Gname</td><td> ' + data["patient"]["gname"]  + ' </td></tr> ' +
+                                        '<tr><td>District</td><td> ' + data["patient"]["dist"]  + ' </td></tr>' +
+                                        '</table> ';
+                                details = details + ' <table> <thead> <tr><th>Previous procedure </th> <th>Date</th></tr> </thead> <tbody>';
+                                for(i=0;i<data["ilns"].length;i++){
+                                    details = details + ' <tr><td> ' + data["ilns"][i]["data"] + '</td><td>' + data["ilns"][0]["created_at"] + '</td></tr> ';
+                                }
+                                details = details + '</tbody> </table>';
+
+                                details = details + ' <table> <thead> <tr><th>Previous procedure </th> <th>Date</th></tr> </thead> <tbody>';
+                                for(i=0;i<data["pres"].length;i++){
+                                    details = details + ' <tr><td> ' + data["pres"][i]["data"] + '</td><td>' + data["pres"][0]["created_at"] + '</td></tr> ';
+                                }
+                                details = details + '</tbody> </table>';
+
+                                details = details + ' <table> <thead> <tr><th>Previous procedure </th> <th>Date</th></tr> </thead> <tbody>';
+                                for(i=0;i<data["proc"].length;i++){
+                                    details = details + ' <tr><td> ' + data["proc"][i]["data"] + '</td><td>' + data["proc"][0]["created_at"] + '</td></tr> ';
+                                }
+                                details = details + '</tbody> </table>';
+
+                                $("#previousPatDets").html(details);
+                                $("#previousPats").hide();
+                                $("#previousPatDets").show();
                             });
                         })
                     });
