@@ -3,6 +3,7 @@
 <head>
     <title>HCMS</title>
     <link rel="stylesheet" href="../css/doctor/patTreat.css">
+    <link rel="stylesheet" href="../css/chartist.css">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
 
     {{--view 1--}}
     <form action="patResult" method="POST" id="treat1">
-        <input type="hidden" name="uid" value="{{ $patient->uid }}">
+        <input type="hidden" name="uid" id="PatientId" value="{{ $patient->uid }}">
         <div id="addsick">
             <div class="title">
                 + add illness details:
@@ -112,11 +113,13 @@
         </form>
         <section id="curBldp">
             <span> </span> Blood Pressure: <span id="bldp">---</span>
+            <div class="ct-chart ct-perfect-fourth"></div>
         </section>
     </div>
 </div>
 
 <script src="../js/jquery.js"></script>
+<script src="../js/chartist.js"></script>
 <script>
     $(document).ready(function(){
         $("#treatlink").click(function(){
@@ -136,12 +139,38 @@
             $("#treat2").removeClass("deactive");
         });
         $("#diagnosticsItem").click(function() {
+            var data = {
+                // A labels array that can contain any sort of values
+                labels:[],
+                //  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                // Our series array that contains series objects or in this case series data arrays
+                series: [ [] ]
+
+            };
+            var options = {
+                width: '750px',
+                height: '400px',
+                high: 200,
+                low:0
+            };
+
             $(this).addClass("selected");
             $("#treatlink").removeClass("selected");
             $("#infolink").removeClass("selected");
             $("#treat1").addClass("deactive");
             $("#treat3").removeClass("deactive");
             $("#treat2").addClass("deactive");
+            $.post( "getBloodPress", { patId : $("#PatientId").val() }, function( bldps ) {
+                data["labels"] = [];
+                data["series"] = [ [] ];
+                for(i=0 ; i<bldps.length; i++) {
+                    data["labels"].push(bldps[i]["created_at"]);
+                    data["series"][0].push(parseInt(bldps[i]["data"]));
+                }
+                console.log(data);
+                new Chartist.Line('.ct-chart', data, options);
+                $("#bldp").html(bldps[bldps.length-1]["data"]);
+            });
         });
     });
 

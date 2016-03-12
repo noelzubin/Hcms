@@ -119,6 +119,12 @@ class PatientController extends Controller
         return redirect("patient/login");
     }
 
+    public function getBloodPress() {
+        $uid = session("loggedUserId");
+        $bldps = General::getMedRecBldp($uid);
+        return $bldps;
+    }
+
 
     //Helper functions
     

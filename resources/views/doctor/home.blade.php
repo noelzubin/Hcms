@@ -89,8 +89,8 @@
                 $("#previousPatDets").hide();
                 docId = $("#docId").val()
                 $.post( "doctor/getPrevPatients", {docid: docId} ,function( data ) {
-                    data = JSON.parse(data);
                     document.d  = data;
+                    data = JSON.parse(data);
                     prevPats = $("#previousPats").html("");
                     for(i=0;i<data.length;i++){
                         prevPats.html(prevPats.html() + ' <section class="prevPats" value="' + data[i][0]["uid"] + '"> ' + data[i][0]["name"] + '   </section> ')

@@ -172,6 +172,12 @@ class General{
         return $medr;
     }
 
+    public static function getMedRecBldp($uid){
+        $medr = DB::connection("centraldb")->select('select * from MR'.$uid .' where `type` = "bldp" and `flag` = "1" order by `id` LIMIT 10' );
+        return $medr;
+    }
+
+
     /**
      * @param patientId
      * @return 20 procedure records

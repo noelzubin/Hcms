@@ -3,6 +3,7 @@
 <head>
     <title>HCMS</title>
     <link rel="stylesheet" href="../css/patient/home.css">
+    <link rel="stylesheet" href="../css/chartist.css">
 </head>
 
 <body>
@@ -74,27 +75,62 @@
         </div>
     </div>
 
-    <div id="treat2">
+    <div id="treat2" style="display: none;">
         <section id="bldpPress">
             <span>Blood Pressure:</span> <span id="bldp">---</span>
         </section>
+        <div class="ct-chart ct-perfect-fourth"></div>
     </div>
 
     <script src="js/jquery.js"></script>
+    <script src="js/chartist.js"></script>
+
     <script>
         $(document).ready(function(){
+            var data = {
+                // A labels array that can contain any sort of values
+                labels:[],
+                //  labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+                // Our series array that contains series objects or in this case series data arrays
+                series: [ [] ]
+
+            };
+
             $("#history").click(function(){
                 $(this).addClass("selected");
                 $("#diagnostics").removeClass("selected");
-                $("#treat1").removeClass("deactive");
-                $("#treat2").addClass("deactive");
+                $("#treat1").show()
+                $("#treat2").hide()
             });
             $("#diagnostics").click(function() {
                 $(this).addClass("selected");
                 $("#history").removeClass("selected");
-                $("#treat1").addClass("deactive");
-                $("#treat2").removeClass("deactive");
+                $("#treat1").hide()
+                $("#treat2").show()
+                $.post( "patient/getBloodPress", function( bldps ) {
+                    data["labels"] = [];
+                    data["series"] = [ [] ];
+                    for(i=0 ; i<bldps.length; i++) {
+                        data["labels"].push(bldps[i]["created_at"]);
+                        data["series"][0].push(parseInt(bldps[i]["data"]));
+                    }
+                    console.log(data);
+                    new Chartist.Line('.ct-chart', data, options);
+                    $("#bldp").html(bldps[bldps.length-1]["data"]);
+                });
+
             });
+
+
+            var options = {
+                width: '750px',
+                height: '400px',
+                high: 200,
+                low:0
+            };
+
+
+
         });
     </script>
 

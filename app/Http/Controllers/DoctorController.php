@@ -143,8 +143,8 @@ class DoctorController extends Controller
             $pat = DB::connection("centraldb")->select('select * from `MR'.$uids[$i]->uid.'` where `docid` = '. $_POST["docid"] .' and `type` = "ilns" ');
             if(sizeof($pat) > 0){
                 $pat = DB::connection("centraldb")->select('select * from `patients` where `uid` = "'. $uids[$i]->uid .'"' );
-            }
                 array_push($prevPats,$pat);
+            }
         }
 
         return json_encode($prevPats);
@@ -173,6 +173,12 @@ class DoctorController extends Controller
         DB::connection("centraldb")->table('MR'.$uid)->insert(['docid' =>$docid , 'hospid'=>2, "type"=>"bldp","flag"=>"0"]);
         General::popQ($uid);
         return redirect("doctor/");
+    }
+
+    public function getBloodPressure() {
+        $uid = $_POST["patId"];
+        $bldps = General::getMedRecBldp($uid);
+        return $bldps;
     }
 
 }

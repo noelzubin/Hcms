@@ -56,6 +56,7 @@ Route::group( ['middleware' => ['web']], function () {
     Route::post('doctor/getPrevPatients', "DoctorController@getPrevPatients");
     Route::post('doctor/getPatientDets', "DoctorController@getPatDets");
     Route::post('doctor/addToDiagnostics', "DoctorController@addToDiagnostics");
+    Route::post("doctor/getBloodPress", "DoctorController@getBloodPressure");
 });
 
 
@@ -82,6 +83,7 @@ Route::group(
     Route::get('patient/logout', "PatientController@logout");
     Route::get('patient/adharReg',"PatientController@adharReg");
     Route::post('patient/adharReg',"PatientController@addPatient");
+    Route::post('patient/getBloodPress',"PatientController@getBloodPress");
 });
 
 // Diagnostics
