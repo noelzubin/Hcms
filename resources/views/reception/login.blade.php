@@ -11,7 +11,7 @@
         <section id="quote">Isn’t it a bit unnerving that doctors call what they do “practice” ~George Carlin</section>
         <img src="../css/resources/receptionist.png" alt="">
         <section id="title"> THE DESK GUY </section>
-        <section id="home"><a href="/">Home</a> </section>
+        <section id="home"><a href="/phar">Home</a> </section>
     </div>
     <form action="#" method="POST" id="right">
         <input id="username" type="number" name="id" min="0" max="999999999" placeholder="desk id">

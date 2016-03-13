@@ -11,7 +11,7 @@
                 <section id="quote">Restore a man to his health, his purse lies open to thee. ~Robert Burton</section>
                 <img src="../css/resources/doctor.png" alt="">
                 <section id="title"> PHARMACIES </section>
-                <section id="home"><a href="/">Home</a> </section>
+                <section id="home"><a href="/phar">Home</a> </section>
             </div>
             <form action="#" method="POST" id="right">
                 <input id="username" type="number" min="0" name="id" placeholder="id">

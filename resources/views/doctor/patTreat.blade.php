@@ -9,7 +9,7 @@
 <body>
 <div id="sidebar">
     <div id="companyName">
-        <a href="/">Tacoe</a>
+        <a href="/doctor">Tacoe</a>
     </div>
     <div id="docName">
         {{ $docName }}

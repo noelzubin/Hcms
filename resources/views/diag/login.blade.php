@@ -9,9 +9,9 @@
 <section id="card">
     <div id="left">
         <section id="quote">Restore a man to his health, his purse lies open to thee. ~Robert Burton</section>
-        <img src="../css/resources/receptionist.png" alt="">
+        <img src="../css/resources/diagnostics.png" alt="">
         <section id="title"> DIAGNOSTICS </section>
-        <section id="home"><a href="/">Home</a> </section>
+        <section id="home"><a href="/diag">Home</a> </section>
     </div>
     <form action="#" method="POST" id="right">
         <input id="username" type="number" min=0 max="99999" name="id" placeholder="id">
