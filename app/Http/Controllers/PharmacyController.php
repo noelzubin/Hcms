@@ -34,20 +34,25 @@ class PharmacyController extends Controller
             return view("pharmacy.login");
     }
 
-    public function loginPhar(){
+    public function loginPhar(Request $request){
+        $this->validate($request,["id"=>"required","password"=>"required|min:8"]);
         $phar = Pharmacy::find($_POST["id"]);
-        if($phar == null)
+        if($phar == null){
+            session()->flash("error","Enter correct credentials");
             return redirect("phar/login");
+        }
         if(Hash::check($_POST["password"], $phar->password )){
             MYAuth::login(MyAuth::$isPharmacy,$_POST["id"]);
             return redirect("phar");
         }
+        session()->flash("error","Enter correct credentials");
         return redirect("phar/login");
     }
 
 
     public function logout(){
         myAuth::logout();
+        session()->flash("error","Successfully logged out");
         return redirect("phar/login");
     }
 
@@ -67,6 +72,7 @@ class PharmacyController extends Controller
         $phar->id = $input["id"];
         $phar->password = bcrypt($input["password"]);
         $phar->save();
+        session()->flash("error","Successfully signed up, You can log in now");
         return redirect("phar/");
     }
 

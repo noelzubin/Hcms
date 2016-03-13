@@ -59,6 +59,7 @@ class PatientController extends Controller
      */
     public function logout(){
         myAuth::logout();
+        session()->flash("error","Successfully logged out");
         return redirect("patient/login");
     }
 
@@ -66,7 +67,8 @@ class PatientController extends Controller
      * function to check if user already has a password
      * else redirect to singup
      */
-    public function checkLogin(){
+    public function checkLogin(Request $request){
+        $this->validate($request,["name"=>"required|min:2","password"=>"required|min:8"]);
         $name = $_POST["name"];
         $password = $_POST["password"];
         $pat = null;
@@ -78,10 +80,12 @@ class PatientController extends Controller
                     myAuth::login(MyAuth::$isPatient, $pat->uid);
                     return redirect("patient");
                 }else{
+                    session()->flash("error","Enter correct credentials");
                     return redirect("patient/login");
                 }
             }
         }
+        session()->flash("error","Please Sign Up first");
         return redirect("patient/signup");
     }
 
@@ -89,15 +93,18 @@ class PatientController extends Controller
      * sign the patient up, add password and MR table
      * for the patient.
      */
-    public function signHimUp() {
+    public function signHimUp(Request $request) {
+        $this->validate($request,["name"=>"required|min:2","password"=>"required|min:8"]);
         $name = $_POST["name"];
         $password = $_POST["password"];
         if($this->isAPatient($name)) {
             $pat = $this->getPatient($name);
             if($pat->password != "" && $pat->password != null) {
+                session()->flash("error","you have already signed up");
                 return redirect("patient/login");
             }else{
                 DB::connection('centraldb')->update("update `patients` set `password` = ? where `uid` = ?",[Hash::make($password) , $pat->uid ]);
+                session()->flash("error","Successfully registered, You can sign in now.");
                 return redirect("patient/login");
             }
         }
@@ -116,6 +123,7 @@ class PatientController extends Controller
         $pat = patient::where("uid", $input["uid"])->first();
         $pat->password = bcrypt(session("password"));
         $pat->save();
+        session()->flash("error","Successfully registered, You can sign in now.");
         return redirect("patient/login");
     }
 

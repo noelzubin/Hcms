@@ -41,5 +41,19 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt("password")
         ]);
 
+        //doctors
+        DB::connection("centraldb")->table('Doctors')->insert([
+            'id' => 1,
+            'password' => bcrypt("password"),
+            'name'=>'syam',
+            'hospital'=>'2'
+        ]);
+        DB::table('ldoctors')->insert([
+            'id' => 1,
+            'queue' => "",
+            'name'=>'syam',
+            'speciality'=>'SRG'
+        ]);
+
     }
 }

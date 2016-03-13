@@ -33,7 +33,7 @@
         <section id="patients">
             <?php
                 if( sizeof($patQ) == 0)
-                    echo '<div id="error"> No patients waiting....</div>';
+                    echo '<div id="err"> No patients waiting....</div>';
                 else{
                     echo '<form action="doctor/patTreat" method="POST">';
                     foreach($patQ as $pat){
@@ -138,6 +138,27 @@
             });
         })();
     </script>
-
+    {{--notifications--}}
+    <link rel="stylesheet" href="../css/notif.css">
+    <div id="notifications">
+        @if(session("error"))
+            <section id="error"> {{ session("error") }} </section>
+        @elseif($errors->any())
+            <section id="error"> {{ $errors->all()[0] }} </section>
+        @endif
+    </div>
+    <script src="../js/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                if($("#notifications section").html() != undefined) {
+                    $("#notifications").toggleClass("notifShow");
+                    setTimeout(function () {
+                        $("#notifications").toggleClass("notifShow");
+                    }, 3000)
+                }
+            },300);
+        });
+    </script>
 </body>
 </html>

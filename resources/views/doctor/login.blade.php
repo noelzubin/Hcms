@@ -22,8 +22,31 @@
         </section>
     </body>
     <div id="container"></div>
-</html>
 
+    {{--notifications--}}
+    <link rel="stylesheet" href="../css/notif.css">
+    <div id="notifications">
+        @if(session("error"))
+            <section id="error"> {{ session("error") }} </section>
+        @elseif($errors->any())
+            <section id="error"> {{ $errors->all()[0] }} </section>
+        @endif
+    </div>
+    <script src="../js/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            setTimeout(function(){
+                if($("#notifications section").html() != undefined) {
+                    $("#notifications").toggleClass("notifShow");
+                    setTimeout(function () {
+                        $("#notifications").toggleClass("notifShow");
+                    }, 3000)
+                }
+            },300);
+        });
+    </script>
+</html>
+{{-- {{ debug(session()) }}--}}
 {{--<form action="login" method="POST">--}}
     {{--<label for="usrname">Username:</label>--}}
     {{--<input type="text" name="name">--}}

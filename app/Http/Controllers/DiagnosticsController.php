@@ -31,20 +31,24 @@ class DiagnosticsController extends Controller
     }
 
     public function logindiag( Request $request) {
-        $this->validate($request, ["id"=>"required","password"=>"required"]);
+        $this->validate($request, ["id"=>"required","password"=>"required|min:8"]);
         $diag = DB::select("select * from `diagnostics` where `id` = " .$_POST["id"]);
-        if($diag == null)
+        if($diag == null){
+            session()->flash("error","Enter the correct credentials");
             return redirect("diag/login");
+        }
         $diag = $diag[0];
         if(Hash::check($_POST["password"] , $diag->password )){
             MyAuth::login(MyAuth::$isDiagnostics,$_POST["id"]);
             return redirect("diag");
         }
+        session()->flash("error","Enter the correct credentials");
         return redirect("diag/login");
     }
 
     public function logout() {
         MyAuth::logout();
+        session()->flash("error","successfully logged out");
         return redirect("diag/login");
     }
 

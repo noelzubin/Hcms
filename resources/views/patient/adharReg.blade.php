@@ -65,6 +65,27 @@
 <script type="text/javascript" src="../js/qrcode/qrcodelib.js"></script>
 <script type="text/javascript" src="../js/qrcode/webcodecamjquery.js"></script>
 <script type="text/javascript" src="../js/patient/qrcodereader.js"></script>
-
+{{--notifications--}}
+<link rel="stylesheet" href="../css/notif.css">
+<div id="notifications">
+    @if(session("error"))
+        <section id="error"> {{ session("error") }} </section>
+    @elseif($errors->any())
+        <section id="error"> {{ $errors->all()[0] }} </section>
+    @endif
+</div>
+<script src="../js/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        setTimeout(function(){
+            if($("#notifications section").html() != undefined) {
+                $("#notifications").toggleClass("notifShow");
+                setTimeout(function () {
+                    $("#notifications").toggleClass("notifShow");
+                }, 3000)
+            }
+        },300);
+    });
+</script>
 </body>
 </html>

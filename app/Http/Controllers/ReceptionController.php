@@ -32,19 +32,23 @@ class ReceptionController extends Controller
     }
 
     public function logindesk(Request $request){
-        $this->validate($request, ["id"=>"required|integer","password"=>"required|min:5"]);
+        $this->validate($request, ["id"=>"required|integer","password"=>"required|min:8"]);
         $input = $_POST;
         $desk = DB::select('select * from receptions where id = ? and hospital = ?', [$input["id"], session("hospid")]);
-        if($desk == null)
+        if($desk == null){
+            session()->flash("error","Enter the correct credentials");
             return view("reception.login");
+        }
         else{
             $desk = $desk[0];
             if(Hash::check(trim($input["password"]), $desk->password)) {
                 myAuth::login(2, $desk->id);
                 return redirect("desk/");
             }
-            else
-                return "wrong credentials";
+            else{
+                session()->flash("error","Enter the correct credentials");
+                return redirect("desk/login");
+            }
         }
     }
 
@@ -65,10 +69,14 @@ class ReceptionController extends Controller
     }
 
     public function addPatToQ(Request $request){
-        if(isset($_POST["doctor"])){
+        if($_POST["doctor"] != "" ) {
             General::addToQ($_POST["doctor"],$_POST["patId"]);
+            session()->flash("error"," Added Patient");
+            return redirect("desk/");
+        }else{
+            session()->flash("error","Please select a doctor");
+            return redirect("desk/");
         }
-        return redirect("desk/");
     }
 
 

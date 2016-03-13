@@ -17,6 +17,6 @@
                 display: block;
             }
         </style>
-        <img id="background" src="css/resources/404.png" alt="">
+        <img id="background" src="http://localhost/css/resources/404.png" alt="">
     </body>
 </html>

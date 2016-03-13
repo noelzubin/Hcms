@@ -37,10 +37,12 @@ class DoctorController extends Controller
      * login page of doctor,
      */
     public function login(){
-        if(MyAuth::check(1))
+        if(MyAuth::check(1)) {;
             return redirect("doctor");
-        else
+        }
+        else {
             return view("doctor.login");
+        }
     }
 
 
@@ -49,6 +51,7 @@ class DoctorController extends Controller
      */
     public function logout(){
         myAuth::logout();
+        session()->flash("error","you have logged out successfully");
         return redirect("doctor/login");
     }
 
@@ -59,16 +62,20 @@ class DoctorController extends Controller
     public function logindoc(Requests\doctorLogin $request){
         $input = $_POST;
         $doc = DB::connection('centraldb')->select('select * from Doctors where name = ? and hospital = ?', [$input["name"] , session("hospid") ]);
-        if($doc == null)
+        if($doc == null){
+            session()->flash("error", "Enter the correct credentials");
             return view("doctor.login");
+        }
         else{
             $doc = $doc[0];
             if(Hash::check(trim($input["password"]), $doc->password)) {
                 myAuth::login(1, $doc->id);
                 return redirect("doctor/");
             }
-            else
-                return "wrong credentials";
+            else{
+                session()->flash("error", "Enter the correct credentials");
+                return redirect("doctor/login");
+            }
         }
     }
 
@@ -86,7 +93,7 @@ class DoctorController extends Controller
 
 
     public function signupdoc(Request $request){
-        $this->validate($request, ["name"=>"required|min:2","password"=>"required|min:5","hospital"=>"required","speciality"=>"required"]);
+        $this->validate($request, ["name"=>"required|min:2","password"=>"required|min:8","hospital"=>"required","speciality"=>"required"]);
         $input = $_POST;
         $doc = new doctor;
         $doc->name = $input["name"];

@@ -66,5 +66,27 @@
     <script type="text/javascript" src="js/qrcode/webcodecamjquery.js"></script>
     <script type="text/javascript" src="js/qrcode/mainjquery.js"></script>
 
+{{--notifications--}}
+<link rel="stylesheet" href="../css/notif.css">
+<div id="notifications">
+    @if(session("error"))
+        <section id="error"> {{ session("error") }} </section>
+    @elseif($errors->any())
+        <section id="error"> {{ $errors->all()[0] }} </section>
+    @endif
+</div>
+<script src="../js/jquery.js"></script>
+<script>
+    $(document).ready(function(){
+        setTimeout(function(){
+            if($("#notifications section").html() != undefined) {
+                $("#notifications").toggleClass("notifShow");
+                setTimeout(function () {
+                    $("#notifications").toggleClass("notifShow");
+                }, 2000)
+            }
+        },300);
+    });
+</script>
 </body>
 </html>
